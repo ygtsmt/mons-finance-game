@@ -57,6 +57,7 @@ class App extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             textTheme: AppTextStyles.textTheme,
           ),

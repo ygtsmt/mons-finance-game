@@ -65,9 +65,7 @@ class _IntroPage extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            Assets.images.gameLogo.image(
-              width: context.isSmall ? 282 : 380,
-            ),
+            Assets.images.gameLogo.image(),
             const Spacer(flex: 4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
