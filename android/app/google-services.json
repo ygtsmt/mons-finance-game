@@ -1,0 +1,29 @@
+{
+    "project_info": {
+      "project_number": "206589950338",
+      "project_id": "mons-finance-game-dev",
+      "storage_bucket": "mons-finance-game-dev.firebasestorage.app"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:206589950338:android:6dfae0c90a51fb3893f79b",
+          "android_client_info": {
+            "package_name": "com.verygoodventures.super_dash"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAXTOq34a1U-jSVdSmUbHRgWucq1AedFGs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

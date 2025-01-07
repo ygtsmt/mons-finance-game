@@ -1,90 +1,54 @@
 {
-  "hosting": [
-    {
-      "target": "app_dev",
-      "public": "build/web",
-      "cleanUrls": true,
-      "trailingSlash": false,
-      "ignore": [
-        ".firebase",
-        "firebase.json",
-        "functions/node_modules",
-        "functions/src",
-        "__/**"
-      ],
-      "headers": [
-        {
-          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-          "headers": [
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            }
-          ]
-        },
-        {
-          "source": "**/*.@(jpg|jpeg|gif|png)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=3600"
-            }
-          ]
-        },
-        {
-          "source": "**",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "no-cache, no-store, must-revalidate"
-            }
-          ]
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "mons-finance-game-dev",
+          "appId": "1:206589950338:android:6dfae0c90a51fb3893f79b",
+          "fileOutput": "android/app/google-services.json"
         }
-      ],
-      "predeploy": []
-    },
-    {
-      "target": "app_prod",
-      "public": "build/web",
-      "cleanUrls": true,
-      "trailingSlash": false,
-      "ignore": [
-        ".firebase",
-        "firebase.json",
-        "functions/node_modules",
-        "functions/src",
-        "__/**"
-      ],
-      "headers": [
-        {
-          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-          "headers": [
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            }
-          ]
-        },
-        {
-          "source": "**/*.@(jpg|jpeg|gif|png)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "max-age=3600"
-            }
-          ]
-        },
-        {
-          "source": "**",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "no-cache, no-store, must-revalidate"
-            }
-          ]
+      },
+      "ios": {
+        "default": {
+          "projectId": "mons-finance-game-dev",
+          "appId": "1:206589950338:ios:8c7b1e53d917920f93f79b",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
         }
-      ],
-      "predeploy": []
+      },
+      "macos": {
+        "default": {
+          "projectId": "mons-finance-game-dev",
+          "appId": "1:206589950338:ios:de0b7e3f48cb994693f79b",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "mons-finance-game-dev",
+          "configurations": {
+            "android": "1:206589950338:android:6dfae0c90a51fb3893f79b",
+            "ios": "1:206589950338:ios:8c7b1e53d917920f93f79b",
+            "macos": "1:206589950338:ios:de0b7e3f48cb994693f79b",
+            "web": "1:206589950338:web:21a60c0d2ad0a25e93f79b"
+          }
+        }
+      }
     }
-  ]
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
