@@ -16,7 +16,7 @@ class SettingsController {
 
   /// Whether or not the sound is on at all. This overrides both music
   /// and sound.
-  ValueNotifier<bool> muted = ValueNotifier(false);
+  ValueNotifier<bool> muted = ValueNotifier(true);
 
   ValueNotifier<bool> soundsOn = ValueNotifier(true);
 

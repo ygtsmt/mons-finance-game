@@ -68,7 +68,6 @@ class _Content extends StatelessWidget {
 
     return Column(
       children: [
-        Assets.images.dashWins.image(height: 160),
         const Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

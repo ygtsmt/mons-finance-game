@@ -60,42 +60,39 @@ class _IntroPage extends StatelessWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
     return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 390),
-        child: Column(
-          children: [
-            const Spacer(),
-            Assets.images.gameLogo.image(),
-            const Spacer(flex: 4),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text(
-                l10n.gameIntroPageHeadline,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+      child: Column(
+        children: [
+          const Spacer(),
+          Assets.images.gameLogo.image(),
+          /*  const Spacer(flex: 3),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Text(
+              l10n.gameIntroPageHeadline,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 32),
-            GameElevatedButton(
-              label: l10n.gameIntroPagePlayButtonText,
-              onPressed: () => Navigator.of(context).push(Game.route()),
-            ),
-            const Spacer(),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AudioButton(),
-                LeaderboardButton(),
-                InfoButton(),
-                HowToPlayButton(),
-              ],
-            ),
-            const SizedBox(height: 32),
-          ],
-        ),
+          ), */
+          const SizedBox(height: 32),
+          GameElevatedButton(
+            label: l10n.gameIntroPagePlayButtonText,
+            onPressed: () => Navigator.of(context).push(Game.route()),
+          ),
+          const Spacer(),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              AudioButton(),
+              LeaderboardButton(),
+              InfoButton(),
+              // HowToPlayButton(),
+            ],
+          ),
+          const SizedBox(height: 32),
+        ],
       ),
     );
   }

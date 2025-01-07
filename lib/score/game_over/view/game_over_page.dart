@@ -23,14 +23,14 @@ class GameOverPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final textTheme = Theme.of(context).textTheme;
-    const titleColor = Color(0xFF18274C);
+    const titleColor = Color(0xFFFFFFFF);
 
     return PageWithBackground(
       background: const GameBackground(),
       child: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: Assets.images.gameOverBg.provider(),
+            image: Assets.images.introBackgroundDesktop.provider(),
             fit: BoxFit.cover,
             alignment:
                 isDesktop ? const Alignment(0, -.5) : Alignment.topCenter,
@@ -145,3 +145,4 @@ class _ScoreWidget extends StatelessWidget {
     return formatter.format(score);
   }
 }
+ 

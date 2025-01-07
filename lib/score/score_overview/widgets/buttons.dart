@@ -41,17 +41,6 @@ class WebButtons extends StatelessWidget {
               },
             ),
             const SizedBox(width: 16),
-            _ShareButton(
-              icon: const Icon(
-                FontAwesomeIcons.facebook,
-                size: 30,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                final score = context.read<ScoreBloc>().score;
-                context.read<ShareController>().shareOnFacebook(score);
-              },
-            ),
           ],
         ),
         const SizedBox(height: 24),

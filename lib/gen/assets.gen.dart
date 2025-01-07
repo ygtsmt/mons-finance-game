@@ -189,7 +189,7 @@ class $AssetsMapAnimGen {
 
   /// File path: assets/map/anim/spritesheet_dash_deathFaint.png
   AssetGenImage get spritesheetDashDeathFaintPng =>
-      const AssetGenImage('assets/map/anim/spritesheet_dash_deathFaint.png');
+      const AssetGenImage('assets/images/auto_run_instruction.png');
 
   /// File path: assets/map/anim/spritesheet_dash_deathFaint.tsx
   String get spritesheetDashDeathFaintTsx =>

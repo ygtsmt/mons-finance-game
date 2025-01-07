@@ -23,25 +23,14 @@ class BottomBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  l10n.superDash,
+                  'MonsFinance',
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 4),
-                RichText(
-                  text: TextSpan(
-                    text: l10n.howItsMade,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      decoration: TextDecoration.underline,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => launchUrlString(Urls.howWeBuilt),
-                  ),
-                ),
+                
               ],
             ),
             const InfoButton(),

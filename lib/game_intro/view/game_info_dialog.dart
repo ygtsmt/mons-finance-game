@@ -43,7 +43,7 @@ class GameInfoDialog extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  l10n.aboutSuperDash,
+                  'About MonsFinance',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 24),
@@ -52,31 +52,18 @@ class GameInfoDialog extends StatelessWidget {
                   text: TextSpan(
                     style: bodyStyle,
                     children: [
-                      TextSpan(text: l10n.learn),
                       TextSpan(
-                        text: l10n.howWeBuiltSuperDash,
+                        text: 'https://mons.finance/',
                         style: linkStyle,
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => launchUrlString(Urls.howWeBuilt),
-                      ),
-                      TextSpan(
-                        text: l10n.inFlutterAndGrabThe,
-                      ),
-                      TextSpan(
-                        text: l10n.openSourceCode,
-                        style: linkStyle,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => launchUrlString(Urls.githubRepo),
+                          ..onTap =
+                              () => launchUrlString('https://mons.finance/'),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.otherLinks,
-                  style: bodyStyle,
-                ),
-                const SizedBox(height: 16),
+
+                /*   const SizedBox(height: 16),
                 RichText(
                   text: TextSpan(
                     text: l10n.flutterGames,
@@ -100,7 +87,7 @@ class GameInfoDialog extends StatelessWidget {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => launchUrlString(Urls.termsOfService),
                   ),
-                ),
+                ), */
               ],
             ),
           ),
