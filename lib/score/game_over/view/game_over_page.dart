@@ -119,7 +119,7 @@ class _ScoreWidget extends StatelessWidget {
           RichText(
             text: TextSpan(
               style: textTheme.headlineMedium?.copyWith(
-                color: const Color(0xFF4D5B92),
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
               children: [
