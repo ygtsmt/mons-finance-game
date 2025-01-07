@@ -33,15 +33,11 @@ class _GameIntroPageState extends State<GameIntroPage> {
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: context.isSmall
-                ? Assets.images.introBackgroundMobile.provider()
-                : Assets.images.introBackgroundDesktop.provider(),
+            image: Assets.images.introBackgroundDesktop.provider(),
             fit: BoxFit.cover,
           ),
         ),
-        child: isMobileWeb
-            ? _MobileWebNotAvailableIntroPage(onDownload: _onDownload)
-            : const _IntroPage(),
+        child: const _IntroPage(),
       ),
     );
   }
