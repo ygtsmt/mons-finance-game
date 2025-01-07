@@ -30,15 +30,8 @@ class _GameIntroPageState extends State<GameIntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DecoratedBox(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: Assets.images.introBackgroundDesktop.provider(),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const _IntroPage(),
-      ),
+      backgroundColor: Colors.black,
+      body: const _IntroPage(),
     );
   }
 
