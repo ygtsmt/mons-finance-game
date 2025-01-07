@@ -260,7 +260,7 @@ class _ErrorBody extends StatelessWidget {
         const SizedBox(height: 32),
         GameElevatedButton.icon(
           label: l10n.playAgain,
-          icon: const Icon(Icons.refresh, size: 16),
+          icon: const Icon(Icons.refresh, size: 32),
           onPressed: () {
             context.flow<ScoreState>().complete();
           },

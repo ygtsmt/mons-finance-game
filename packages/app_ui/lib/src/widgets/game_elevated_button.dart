@@ -61,7 +61,7 @@ class GameElevatedButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(94),
               ),
               padding: const EdgeInsets.symmetric(vertical: 22),
-              textStyle: theme.textTheme.labelLarge?.copyWith(
+              textStyle: theme.textTheme.titleLarge?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

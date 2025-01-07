@@ -121,6 +121,7 @@ class _MobileWebNotAvailableIntroPage extends StatelessWidget {
               icon: const Icon(
                 Icons.download,
                 color: Colors.white,
+                size: 32,
               ),
               onPressed: onDownload,
             ),

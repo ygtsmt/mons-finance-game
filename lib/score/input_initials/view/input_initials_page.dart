@@ -21,14 +21,7 @@ class InputInitialsPage extends StatelessWidget {
     return PageWithBackground(
       background: const GameBackground(),
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: Assets.images.gameOverBg.provider(),
-            fit: BoxFit.cover,
-            alignment:
-                isDesktop ? const Alignment(0, .7) : Alignment.bottomCenter,
-          ),
-        ),
+        decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
         child: Center(
           child: Column(
             children: [
