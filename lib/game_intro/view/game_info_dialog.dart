@@ -53,7 +53,7 @@ class GameInfoDialog extends StatelessWidget {
                     style: bodyStyle,
                     children: [
                       TextSpan(
-                        text: 'https://mons.finance/',
+                        text: 'https://mons.finance',
                         style: linkStyle,
                         recognizer: TapGestureRecognizer()
                           ..onTap =
