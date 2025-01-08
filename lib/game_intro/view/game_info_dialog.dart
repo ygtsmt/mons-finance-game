@@ -39,12 +39,12 @@ class GameInfoDialog extends StatelessWidget {
           Assets.images.gameLogo.image(width: 230),
           const SizedBox(height: 40),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
                 Text(
                   'About MonsFinance',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 24),
                 RichText(
