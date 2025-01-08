@@ -5,6 +5,7 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame/src/effects/provider_interfaces.dart';
 import 'package:flame/text.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
@@ -121,7 +122,7 @@ class SuperDashGame extends LeapGame
 
     camera = CameraComponent.withFixedResolution(
       width: _cameraViewport.x,
-      height: _cameraViewport.y,
+      height: _cameraViewport.y + 200,
     )..world = world;
 
     images = Images(
@@ -268,13 +269,13 @@ class SuperDashGame extends LeapGame
   Future<void> _addSpawners() async {
     await addAll([
       ObjectGroupProximityBuilder<Player>(
-        proximity: _cameraViewport.x * 1.5,
+        proximity: _cameraViewport.x * 1.2,
         tileLayerName: 'items',
         tileset: itemsTileset,
         componentBuilder: Item.new,
       ),
       ObjectGroupProximityBuilder<Player>(
-        proximity: _cameraViewport.x * 1.5,
+        proximity: _cameraViewport.x * 1.2,
         tileLayerName: 'enemies',
         tileset: enemiesTileset,
         componentBuilder: Enemy.new,
@@ -286,7 +287,6 @@ class SuperDashGame extends LeapGame
     final nextSectionIndex = state.currentSection + 1 < _sections.length
         ? state.currentSection + 1
         : 0;
-
     final nextSection = _sections[nextSectionIndex];
 
     _resetEntities();
