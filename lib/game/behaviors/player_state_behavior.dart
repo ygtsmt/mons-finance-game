@@ -108,71 +108,71 @@ class PlayerStateBehavior extends Behavior<Player> {
     ] = await Future.wait(
       [
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_dash_idle.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 18,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_dash_run.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_phoenixDash_idle.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 18,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_phoenixDash_run.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_dash_deathPit.png',
+          'anim/auto_run_instruction_death.png',
           SpriteAnimationData.sequenced(
             amount: 24,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             amountPerRow: 8,
             loop: false,
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_dash_deathFaint.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 24,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             amountPerRow: 8,
             loop: false,
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_dash_jump.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             loop: false,
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_phoenixDash_jump.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2(
               parent.gameRef.tileSize,
               parent.gameRef.tileSize * 2,
@@ -182,10 +182,10 @@ class PlayerStateBehavior extends Behavior<Player> {
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/spritesheet_phoenixDash_doublejump.png',
+          'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 0.042,
+            stepTime: 999999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             loop: false,
           ),
