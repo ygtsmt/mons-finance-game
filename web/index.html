@@ -175,7 +175,7 @@
   </style>
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
+    var serviceWorkerVersion = '{{flutter_service_worker_version}}';
   </script>
 </head>
 
@@ -261,7 +261,7 @@
                   await cookiesAcceptanceCompleter(); // Kullanıcı müdahalesi olmadan ilerler.
                   window.addEventListener("flutter-first-frame", function () {
                     progressBar.remove();
-                    splashLogo.remove();
+         /*            splashLogo.remove(); */
                     splashCopy.remove();
                     document.body.classList.remove("loading-mode");
                   });

@@ -66,8 +66,10 @@ class AuthenticationRepository {
     try {
       final userCredential = await _firebaseAuth.signInAnonymously();
       _userController.add(userCredential.toUser);
-    } on Exception catch (error, stackTrace) {
-      throw AuthenticationException(error, stackTrace);
+    } catch (e) {
+      if (e is AuthenticationException) {
+        print("Authentication failed: ${e.error}");
+      }
     }
   }
 
