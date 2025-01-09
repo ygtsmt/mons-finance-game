@@ -33,8 +33,6 @@ class GameView extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           GameWidget.controlled(
-            loadingBuilder: (context) => const GameBackground(),
-            backgroundBuilder: (context) => const GameBackground(),
             gameFactory: () => SuperDashGame(
               gameBloc: context.read<GameBloc>(),
               audioController: context.read<AudioController>(),
