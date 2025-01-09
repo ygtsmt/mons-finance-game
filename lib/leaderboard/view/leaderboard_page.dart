@@ -182,19 +182,7 @@ class LeaderboardLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: 64,
-      child: SpriteAnimationWidget.asset(
-        images: Images(prefix: ''),
-        path: Assets.map.anim.spritesheetDashRunPng.path,
-        data: SpriteAnimationData.sequenced(
-          amount: 16,
-          stepTime: 0.042,
-          textureSize: Vector2.all(64), // Game's tile size.
-          amountPerRow: 8,
-        ),
-      ),
-    );
+    return CircularProgressIndicator();
   }
 }
 
