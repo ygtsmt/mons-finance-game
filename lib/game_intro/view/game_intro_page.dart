@@ -19,6 +19,8 @@ class GameIntroPage extends StatefulWidget {
 
 class _GameIntroPageState extends State<GameIntroPage> {
   String? telegramUserName;
+  dynamic deneme;
+  dynamic deneme2;
 
   @override
   void initState() {
@@ -34,10 +36,15 @@ class _GameIntroPageState extends State<GameIntroPage> {
       final initDataJson = js.context.callMethod('JSON.parse', [initData]);
 
       setState(() {
+        deneme2 = initData;
         telegramUserName =
             (initDataJson['user']?['username'] as String?) ?? 'Guest';
+        deneme = initDataJson;
       });
+
+      print(initData.toString());
     } catch (e) {
+      print(e.toString());
       // Hata durumunda varsayılan bir değer
       setState(() {
         telegramUserName = 'Guest';
@@ -52,6 +59,8 @@ class _GameIntroPageState extends State<GameIntroPage> {
       backgroundColor: Colors.black,
       body: Column(
         children: [
+          Text(deneme2.toString() ?? ' ssss'),
+          Text(deneme.toString() ?? ' skafkjs'),
           Text(telegramUserName ?? ' skafkjs'),
           Expanded(child: _IntroPage()),
         ],
