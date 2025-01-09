@@ -45,7 +45,7 @@ class WebButtons extends StatelessWidget {
         const SizedBox(height: 16),
         const SizedBox(width: 16),
         const SizedBox(height: 24),
-        const _SeeTheRankingButton(),
+        const SeeTheRankingButton(),
         const SizedBox(height: 24),
         const _PlayAgainButton(),
       ],
@@ -76,7 +76,7 @@ class MobileButtons extends StatelessWidget {
         const SizedBox(height: 24),
         const _PlayAgainButton(),
         const SizedBox(height: 24),
-        const _SeeTheRankingButton(),
+        const SeeTheRankingButton(),
       ],
     );
   }
@@ -126,8 +126,8 @@ class _PlayAgainButton extends StatelessWidget {
   }
 }
 
-class _SeeTheRankingButton extends StatelessWidget {
-  const _SeeTheRankingButton();
+class SeeTheRankingButton extends StatelessWidget {
+  const SeeTheRankingButton();
 
   @override
   Widget build(BuildContext context) {

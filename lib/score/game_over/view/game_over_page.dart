@@ -59,12 +59,13 @@ class GameOverPage extends StatelessWidget {
               const Spacer(flex: 2),
               _ScoreWidget(score),
               const Spacer(flex: 4),
-              GameElevatedButton(
+              const SeeTheRankingButton(),
+              /*  GameElevatedButton(
                 label: l10n.submitScore,
                 onPressed: () {
                   context.read<ScoreBloc>().add(const ScoreSubmitted());
                 },
-              ),
+              ), */
               const Spacer(flex: 3),
               GameElevatedButton.icon(
                 label: l10n.playAgain,
