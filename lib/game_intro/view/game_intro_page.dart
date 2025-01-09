@@ -4,10 +4,10 @@ import 'dart:js' as js;
 
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:super_dash/game/game.dart';
 import 'package:super_dash/game_intro/widgets/game_intro_buttons.dart';
 import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
-import 'package:super_dash/game/game.dart';
 
 class GameIntroPage extends StatefulWidget {
   const GameIntroPage({super.key});
