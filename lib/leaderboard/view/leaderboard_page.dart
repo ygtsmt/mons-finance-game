@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:flame/cache.dart';
 import 'package:flame/image_composition.dart';
@@ -12,6 +14,7 @@ import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
 import 'package:super_dash/leaderboard/bloc/leaderboard_bloc.dart';
 import 'package:super_dash/score/score.dart';
+import 'package:http/http.dart' as http;
 
 enum LeaderboardStep { gameIntro, gameScore }
 
@@ -136,8 +139,7 @@ class Leaderboard extends StatelessWidget {
           LeaderboardLoading() =>
             const Center(child: LeaderboardLoadingWidget()),
           LeaderboardError() => const Center(child: LeaderboardErrorWidget()),
-          LeaderboardLoaded(entries: final entries) =>
-            LeaderboardContent(entries: entries),
+          LeaderboardLoaded(entries: final entries) => LeaderboardContent(),
         },
       ),
     );
@@ -197,18 +199,28 @@ class LeaderboardLoadingWidget extends StatelessWidget {
 }
 
 @visibleForTesting
-class LeaderboardContent extends StatelessWidget {
+class LeaderboardContent extends StatefulWidget {
   const LeaderboardContent({
-    required this.entries,
     super.key,
   });
 
-  final List<LeaderboardEntryData> entries;
+  @override
+  State<LeaderboardContent> createState() => _LeaderboardContentState();
+}
+
+class _LeaderboardContentState extends State<LeaderboardContent> {
+  List<dynamic>? leaderBoardList;
+  @override
+  void initState() {
+    fetchLeaderboard();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Stack(
       children: [
         Padding(
@@ -223,12 +235,51 @@ class LeaderboardContent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              if (entries.isEmpty)
-                Center(child: Text(l10n.leaderboardPageLeaderboardNoEntries))
-              else
-                Flexible(
-                  child: _LeaderboardEntries(entries: entries),
+              Flexible(
+                child: ListView.separated(
+                  padding: EdgeInsets.zero,
+                  separatorBuilder: (context, index) =>
+                      const Divider(color: Colors.grey),
+                  itemCount: leaderBoardList?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      dense: true,
+                      minVerticalPadding: 0,
+                      contentPadding: EdgeInsets.zero,
+                      leading: Text('#${index + 1}'),
+                      title: Text(
+                          leaderBoardList?[index]['userName'].toString() ??
+                              'NULL'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if ([0, 1, 2].contains(index)) ...[
+                            Icon(
+                              FontAwesomeIcons.trophy,
+                              size: 20,
+                              color: switch (index) {
+                                0 => const Color(0xFFD4AF37),
+                                1 => const Color(0xFFC0C0C0),
+                                _ => const Color(0xFFCD7F32),
+                              },
+                            ),
+                            const SizedBox(width: 10),
+                          ],
+                          Text(l10n.gameScoreLabel(
+                              leaderBoardList?[index]['totalPoints'] as int)),
+                        ],
+                      ),
+                      titleTextStyle: textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      leadingAndTrailingTextStyle:
+                          textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
+              ),
               const SizedBox(height: 30),
             ],
           ),
@@ -257,56 +308,39 @@ class LeaderboardContent extends StatelessWidget {
       ],
     );
   }
+
+  Future<List<LeaderboardEntryDataNew>> fetchLeaderboard() async {
+    final response = await http.get(
+      Uri.parse(
+          'https://mini-backend.devargedor.com/api/Score/GetLeaderboardMonsGameWithData'),
+    );
+
+    if (response.statusCode == 200) {
+      final body = json.decode(response.body);
+      final List<dynamic> data = body['data'] as List<dynamic>;
+      setState(() {
+        leaderBoardList = data;
+      });
+      return data
+          .map((entry) =>
+              LeaderboardEntryDataNew.fromJson(entry as Map<String, dynamic>))
+          .toList();
+    } else {
+      throw Exception('Failed to load leaderboard');
+    }
+  }
 }
 
-class _LeaderboardEntries extends StatelessWidget {
-  const _LeaderboardEntries({required this.entries});
+class LeaderboardEntryDataNew {
+  final String userName;
+  final int totalPoints;
 
-  final List<LeaderboardEntryData> entries;
+  LeaderboardEntryDataNew({required this.userName, required this.totalPoints});
 
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    return ListView.separated(
-      padding: EdgeInsets.zero,
-      separatorBuilder: (context, index) => const Divider(color: Colors.grey),
-      itemCount: entries.length,
-      itemBuilder: (context, index) {
-        final entry = entries.elementAt(index);
-        return ListTile(
-          dense: true,
-          minVerticalPadding: 0,
-          contentPadding: EdgeInsets.zero,
-          leading: Text('#${index + 1}'),
-          title: Text(entry.playerInitials),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if ([0, 1, 2].contains(index)) ...[
-                Icon(
-                  FontAwesomeIcons.trophy,
-                  size: 20,
-                  color: switch (index) {
-                    0 => const Color(0xFFD4AF37),
-                    1 => const Color(0xFFC0C0C0),
-                    _ => const Color(0xFFCD7F32),
-                  },
-                ),
-                const SizedBox(width: 10),
-              ],
-              Text(l10n.gameScoreLabel(entry.score)),
-            ],
-          ),
-          titleTextStyle: textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-          leadingAndTrailingTextStyle: textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        );
-      },
+  factory LeaderboardEntryDataNew.fromJson(Map<String, dynamic> json) {
+    return LeaderboardEntryDataNew(
+      userName: json['userName'] as String ?? 'Unknown',
+      totalPoints: json['totalPoints'] as int ?? 0,
     );
   }
 }
