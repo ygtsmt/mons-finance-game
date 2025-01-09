@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app_ui/app_ui.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,8 @@ import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
 import 'package:super_dash/score/score.dart';
 import 'package:super_dash/utils/utils.dart';
+import 'package:http/http.dart' as http;
+import 'dart:js' as js;
 
 class GameOverPage extends StatelessWidget {
   const GameOverPage({super.key});
@@ -100,9 +104,12 @@ class _ScoreWidget extends StatefulWidget {
 }
 
 class _ScoreWidgetState extends State<_ScoreWidget> {
+  Map<String, dynamic>? telegramData;
+
   @override
   void initState() {
     widget.score;
+    getTelegramData();
     super.initState();
   }
 
@@ -153,5 +160,61 @@ class _ScoreWidgetState extends State<_ScoreWidget> {
   String formatScore(int score) {
     final formatter = NumberFormat('#,###');
     return formatter.format(score);
+  }
+
+  Future<void> sendScore(Map<String, dynamic> data) async {
+    try {
+      final telegramId = data['user']['id'].toString();
+
+      final url = Uri.parse(
+          'https://mini-backend.devargedor.com/api/Customer/CustomerGamePointsLogMons?gamePoint=${widget.score}&customerTelegramId=$telegramId');
+
+      final response = await http.get(
+        url,
+      );
+
+      if (response.statusCode == 200) {
+        print('API isteği başarılı: ${response.body}');
+      } else {
+        print(
+            'API isteği başarısız: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('API isteği sırasında hata oluştu: $e');
+    }
+  }
+
+  void getTelegramData() {
+    final data = initTelegramWebApp();
+    setState(() {
+      telegramData = data;
+    });
+    sendScore(telegramData!);
+  }
+
+  static Map<String, dynamic>? initTelegramWebApp() {
+    try {
+      final result = js.context.callMethod('initTelegramWebApp');
+      if (result != null) {
+        final jsonString =
+            js.context['JSON'].callMethod('stringify', [result]) as String;
+        print('Telegram Data: $jsonString'); // Hata ayıklama için
+        return jsonDecode(jsonString) as Map<String, dynamic>;
+      } else {
+        print('initTelegramWebApp result is null.');
+      }
+    } catch (e) {
+      print('Error fetching Telegram data: $e');
+    }
+
+    // Manuel test için sahte bir veri döndürüyoruz
+    return {
+      'user': {
+        'id': '123456',
+        'username': 'test_user',
+        'first_name': 'John',
+        'last_name': 'Doe',
+      }
+    };
   }
 }
