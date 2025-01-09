@@ -11,12 +11,13 @@ class ShareController {
     final formatter = NumberFormat('#,###');
     final scoreFormatted = formatter.format(score);
 
-    return 'I scored $scoreFormatted on '
-        '#MonsFinanceGame. Can you beat my score?';
+    return 'I scored $scoreFormatted onss MonsFinanceGame. Can you beat my score?';
   }
 
-  String _twitterUrl(String content) =>
-      'https://twitter.com/intent/tweet?text=$content $gameUrl';
+  String _twitterUrl(String content) {
+    final encodedContent = Uri.encodeComponent(content);
+    return 'https://twitter.com/intent/tweet?text=$encodedContent $gameUrl';
+  }
 
   String facebookUrl(String content) =>
       'https://www.facebook.com/sharer.php?u=$gameUrl';
