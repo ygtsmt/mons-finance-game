@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:js' as js;
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,29 +18,46 @@ class GameIntroPage extends StatefulWidget {
 }
 
 class _GameIntroPageState extends State<GameIntroPage> {
+  String? telegramUserName;
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    precacheImage(Assets.images.gameBackground.provider(), context);
+  void initState() {
+    super.initState();
+    fetchTelegramUserName();
   }
 
-  void _onDownload() {
-    final isAndroid = defaultTargetPlatform == TargetPlatform.android;
-    launchUrl(Uri.parse(isAndroid ? Urls.playStoreLink : Urls.appStoreLink));
+  // Kullanıcı adını Telegram SDK üzerinden çekme
+  void fetchTelegramUserName() {
+    try {
+      final initData =
+          js.context.callMethod('eval', ['Telegram.WebApp.initData']);
+      final initDataJson = js.context.callMethod('JSON.parse', [initData]);
+
+      setState(() {
+        telegramUserName =
+            (initDataJson['user']?['username'] as String?) ?? 'Guest';
+      });
+    } catch (e) {
+      // Hata durumunda varsayılan bir değer
+      setState(() {
+        telegramUserName = 'Guest';
+      });
+      debugPrint('Telegram username fetch error: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: const _IntroPage(),
+      body: Column(
+        children: [
+          Text(telegramUserName ?? ' skafkjs'),
+          Expanded(child: _IntroPage()),
+        ],
+      ),
     );
   }
-
-  bool get isMobileWeb =>
-      kIsWeb &&
-      (defaultTargetPlatform == TargetPlatform.android ||
-          defaultTargetPlatform == TargetPlatform.iOS);
 }
 
 class _IntroPage extends StatelessWidget {
