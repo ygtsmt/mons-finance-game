@@ -24,6 +24,7 @@ class GameOverPage extends StatelessWidget {
     final l10n = context.l10n;
     final textTheme = Theme.of(context).textTheme;
     const titleColor = Color(0xFFFFFFFF);
+    final score = context.select((ScoreBloc bloc) => bloc.score);
 
     return PageWithBackground(
       background: const GameBackground(),
@@ -56,7 +57,7 @@ class GameOverPage extends StatelessWidget {
                 ),
               ),
               const Spacer(flex: 2),
-              const _ScoreWidget(),
+              _ScoreWidget(score),
               const Spacer(flex: 4),
               GameElevatedButton(
                 label: l10n.submitScore,
@@ -89,8 +90,20 @@ class GameOverPage extends StatelessWidget {
   }
 }
 
-class _ScoreWidget extends StatelessWidget {
-  const _ScoreWidget();
+class _ScoreWidget extends StatefulWidget {
+  final int score;
+  const _ScoreWidget(this.score);
+
+  @override
+  State<_ScoreWidget> createState() => _ScoreWidgetState();
+}
+
+class _ScoreWidgetState extends State<_ScoreWidget> {
+  @override
+  void initState() {
+    widget.score;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

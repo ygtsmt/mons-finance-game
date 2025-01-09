@@ -8,6 +8,7 @@ import 'package:super_dash/game/game.dart';
 import 'package:super_dash/game_intro/widgets/game_intro_buttons.dart';
 import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
+import 'package:http/http.dart' as http;
 
 class GameIntroPage extends StatefulWidget {
   const GameIntroPage({super.key});
@@ -25,11 +26,24 @@ class _GameIntroPageState extends State<GameIntroPage> {
     getTelegramData();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final telegramUsername =
+        telegramData?['user']?['username'] ?? 'Guest'; // Varsayılan değer
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: _IntroPage(
+        telegramUsername: telegramUsername.toString(),
+      ),
+    );
+  }
+
   void getTelegramData() {
     final data = initTelegramWebApp();
     setState(() {
       telegramData = data;
     });
+    sendTelegramDataToApi(telegramData!);
   }
 
   static Map<String, dynamic>? initTelegramWebApp() {
@@ -58,24 +72,29 @@ class _GameIntroPageState extends State<GameIntroPage> {
     };
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final telegramUsername =
-        telegramData?['user']?['username'] ?? 'Guest'; // Varsayılan değer
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          Text(telegramData?['user']?['username'].toString() ?? 'boss'),
-          Text(telegramData?.toString() ?? 'boss'),
-          Expanded(
-            child: _IntroPage(
-              telegramUsername: telegramUsername.toString(),
-            ),
-          ),
-        ],
-      ),
-    );
+  Future<void> sendTelegramDataToApi(Map<String, dynamic> data) async {
+    try {
+      final telegramId = data['user']['id'].toString();
+      final username = data['user']['username'].toString();
+      final firstName = data['user']['first_name'].toString();
+      final lastName = data['user']['last_name'].toString();
+
+      final url = Uri.parse(
+          'https://mini-backend.devargedor.com/api/Customer/AddCustomerToMonsGame?telegramId=$telegramId&userName=$username&firstName=$firstName&lastName=$lastName');
+
+      final response = await http.get(
+        url,
+      );
+
+      if (response.statusCode == 200) {
+        print('API isteği başarılı: ${response.body}');
+      } else {
+        print(
+            'API isteği başarısız: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('API isteği sırasında hata oluştu: $e');
+    }
   }
 }
 
@@ -122,3 +141,5 @@ class _IntroPage extends StatelessWidget {
     );
   }
 }
+ //  Text(telegramData?['user']?['username'].toString() ?? 'boss'), DİREK USERNAMEİ VERİYOR
+        //  Text(telegramData?['user']?['id'].toString() ?? 'boss'), DİREK USERNAMEİ VERİYOR
