@@ -8,7 +8,6 @@ import 'package:super_dash/game_intro/widgets/game_intro_buttons.dart';
 import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
 import 'package:super_dash/game/game.dart';
-import 'package:super_dash/constants/constants.dart';
 
 class GameIntroPage extends StatefulWidget {
   const GameIntroPage({super.key});
@@ -18,29 +17,24 @@ class GameIntroPage extends StatefulWidget {
 }
 
 class _GameIntroPageState extends State<GameIntroPage> {
-  dynamic telegramUsername;
-  dynamic deneme;
+  Map<String, dynamic>? telegramData;
 
   @override
   void initState() {
     super.initState();
-    fetchTelegramUsername();
+    getTelegramData();
   }
 
-  void fetchTelegramUsername() {
+  void getTelegramData() {
     final data = initTelegramWebApp();
-    print(data?['user']?['username']);
-    print(data.toString());
-
     setState(() {
-      telegramUsername = data?['user']?['username'];
-      deneme = data;
+      telegramData = data;
     });
   }
 
   static Map<String, dynamic>? initTelegramWebApp() {
     try {
-      final dynamic result = js.context.callMethod('initTelegramWebApp');
+      final result = js.context.callMethod('initTelegramWebApp');
       if (result != null) {
         final jsonString =
             js.context['JSON'].callMethod('stringify', [result]) as String;
@@ -54,18 +48,22 @@ class _GameIntroPageState extends State<GameIntroPage> {
 
   @override
   Widget build(BuildContext context) {
+    final telegramUsername =
+        telegramData?['user']?['username'] ?? 'Guest'; // Varsayılan değer
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: Column(
-          children: [
-            Text(telegramUsername.toString() ?? 'teelegramusername bos'),
-            Text(deneme.toString() ?? ' s'),
-            Text('llll'),
-            Expanded(
-                child:
-                    _IntroPage(telegramUsername: telegramUsername.toString())),
-          ],
-        ));
+      backgroundColor: Colors.black,
+      body: Column(
+        children: [
+          Text(telegramData?['user']?['username'].toString() ?? 'boss'),
+          Text(telegramData?.toString() ?? 'boss'),
+          Expanded(
+            child: _IntroPage(
+              telegramUsername: telegramUsername.toString(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
