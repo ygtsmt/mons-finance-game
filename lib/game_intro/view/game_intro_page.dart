@@ -38,12 +38,24 @@ class _GameIntroPageState extends State<GameIntroPage> {
       if (result != null) {
         final jsonString =
             js.context['JSON'].callMethod('stringify', [result]) as String;
+        print('Telegram Data: $jsonString'); // Hata ayıklama için
         return jsonDecode(jsonString) as Map<String, dynamic>;
+      } else {
+        print('initTelegramWebApp result is null.');
       }
     } catch (e) {
       print('Error fetching Telegram data: $e');
     }
-    return null;
+
+    // Manuel test için sahte bir veri döndürüyoruz
+    return {
+      'user': {
+        'id': '123456',
+        'username': 'test_user',
+        'first_name': 'John',
+        'last_name': 'Doe',
+      }
+    };
   }
 
   @override
