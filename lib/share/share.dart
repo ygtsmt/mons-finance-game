@@ -11,8 +11,8 @@ class ShareController {
     final formatter = NumberFormat('#,###');
     final scoreFormatted = formatter.format(score);
 
-    return 'Seen the latest #FlutterGame? I scored $scoreFormatted on '
-        '#SuperDash. Can you beat my score?';
+    return 'I scored $scoreFormatted on '
+        '#MonsFinanceGame. Can you beat my score?';
   }
 
   String _twitterUrl(String content) =>

@@ -24,11 +24,11 @@ class WebButtons extends StatelessWidget {
     final l10n = context.l10n;
     return Column(
       children: [
-        Text(l10n.shareOn),
-        const SizedBox(height: 16),
         Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(l10n.shareOn),
+            const SizedBox(width: 16),
             _ShareButton(
               icon: const Icon(
                 FontAwesomeIcons.xTwitter,
@@ -40,9 +40,10 @@ class WebButtons extends StatelessWidget {
                 context.read<ShareController>().shareOnTwitter(score);
               },
             ),
-            const SizedBox(width: 16),
           ],
         ),
+        const SizedBox(height: 16),
+        const SizedBox(width: 16),
         const SizedBox(height: 24),
         const _SeeTheRankingButton(),
         const SizedBox(height: 24),

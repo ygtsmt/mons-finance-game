@@ -29,7 +29,7 @@ void main() async {
   await audio.initialize();
 
   final share = ShareController(
-    gameUrl: 'https://superdash.flutter.dev/',
+    gameUrl: 't.me/MonsFinanceGame_bot/',
   );
 
   final leaderboardRepository = LeaderboardRepository(
