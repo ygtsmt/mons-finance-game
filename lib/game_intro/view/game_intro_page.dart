@@ -73,29 +73,27 @@ class _GameIntroPageState extends State<GameIntroPage> {
   }
 
   Future<void> sendTelegramDataToApi(Map<String, dynamic> data) async {
-    if (data['user']['id'].toString().length > 1) {
-      try {
-        final telegramId = data['user']['id'].toString();
-        final username = data['user']['username'].toString();
-        final firstName = data['user']['first_name'].toString();
-        final lastName = data['user']['last_name'].toString();
+    try {
+      final telegramId = data['user']['id'].toString();
+      final username = data['user']['username'].toString();
+      final firstName = data['user']['first_name'].toString();
+      final lastName = data['user']['last_name'].toString();
 
-        final url = Uri.parse(
-            'https://mini-backend.devargedor.com/api/Customer/AddCustomerToMonsGame?telegramId=$telegramId&userName=$username&firstName=$firstName&lastName=$lastName');
+      final url = Uri.parse(
+          'https://mini-backend.devargedor.com/api/Customer/AddCustomerToMonsGame?telegramId=$telegramId&userName=$username&firstName=$firstName&lastName=$lastName');
 
-        final response = await http.get(
-          url,
-        );
+      final response = await http.get(
+        url,
+      );
 
-        if (response.statusCode == 200) {
-          print('API isteği başarılı: ${response.body}');
-        } else {
-          print(
-              'API isteği başarısız: ${response.statusCode} - ${response.body}');
-        }
-      } catch (e) {
-        print('API isteği sırasında hata oluştu: $e');
+      if (response.statusCode == 200) {
+        print('API isteği başarılı: ${response.body}');
+      } else {
+        print(
+            'API isteği başarısız: ${response.statusCode} - ${response.body}');
       }
+    } catch (e) {
+      print('API isteği sırasında hata oluştu: $e');
     }
   }
 }
