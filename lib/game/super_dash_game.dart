@@ -335,7 +335,7 @@ class SuperDashGame extends LeapGame
 
     gameBloc
       ..add(GameScoreIncreased(by: 1000 * state.currentLevel))
-      ..add(GameSectionCompleted(sectionCount: 2));
+      ..add(GameSectionCompleted(sectionCount: _sections.length));
   }
 
   bool get isLastSection => state.currentSection == _sections.length - 1;
