@@ -64,36 +64,38 @@ class _GameIntroPageState extends State<GameIntroPage> {
     // Manuel test için sahte bir veri döndürüyoruz
     return {
       'user': {
-        'id': '123456',
-        'username': 'test_user',
-        'first_name': 'John',
-        'last_name': 'Doe',
+        'id': '',
+        'username': '',
+        'first_name': '',
+        'last_name': '',
       }
     };
   }
 
   Future<void> sendTelegramDataToApi(Map<String, dynamic> data) async {
-    try {
-      final telegramId = data['user']['id'].toString();
-      final username = data['user']['username'].toString();
-      final firstName = data['user']['first_name'].toString();
-      final lastName = data['user']['last_name'].toString();
+    if (data['user']['id'].toString().length > 1) {
+      try {
+        final telegramId = data['user']['id'].toString();
+        final username = data['user']['username'].toString();
+        final firstName = data['user']['first_name'].toString();
+        final lastName = data['user']['last_name'].toString();
 
-      final url = Uri.parse(
-          'https://mini-backend.devargedor.com/api/Customer/AddCustomerToMonsGame?telegramId=$telegramId&userName=$username&firstName=$firstName&lastName=$lastName');
+        final url = Uri.parse(
+            'https://mini-backend.devargedor.com/api/Customer/AddCustomerToMonsGame?telegramId=$telegramId&userName=$username&firstName=$firstName&lastName=$lastName');
 
-      final response = await http.get(
-        url,
-      );
+        final response = await http.get(
+          url,
+        );
 
-      if (response.statusCode == 200) {
-        print('API isteği başarılı: ${response.body}');
-      } else {
-        print(
-            'API isteği başarısız: ${response.statusCode} - ${response.body}');
+        if (response.statusCode == 200) {
+          print('API isteği başarılı: ${response.body}');
+        } else {
+          print(
+              'API isteği başarısız: ${response.statusCode} - ${response.body}');
+        }
+      } catch (e) {
+        print('API isteği sırasında hata oluştu: $e');
       }
-    } catch (e) {
-      print('API isteği sırasında hata oluştu: $e');
     }
   }
 }
@@ -133,6 +135,7 @@ class _IntroPage extends StatelessWidget {
               AudioButton(),
               LeaderboardButton(),
               InfoButton(),
+              HowToPlayButton()
             ],
           ),
           const SizedBox(height: 32),

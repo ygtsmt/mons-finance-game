@@ -30,10 +30,10 @@ class BottomBar extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                
               ],
             ),
             const InfoButton(),
+            const HowToPlayButton()
           ],
         ),
       ),

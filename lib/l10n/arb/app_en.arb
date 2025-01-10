@@ -12,7 +12,7 @@
     "@gameInstructionsPageAutoRunTitle": {
         "description": "Text shown in the title of the auto run instruction of the Game Instructions Overlay"
     },
-    "gameInstructionsPageAutoRunDescription": "Welcome to Super Dash. In this game Dash runs automatically.",
+    "gameInstructionsPageAutoRunDescription": "Welcome to MonsFinance Game. In this game Dash runs automatically.",
     "@gameInstructionsPageAutoRunDescription": {
         "description": "Text shown in the description of the auto run instruction of the Game Instructions Overlay"
     },

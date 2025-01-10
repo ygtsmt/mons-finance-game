@@ -10,7 +10,6 @@ import 'package:super_dash/game_intro/game_intro.dart';
 import 'package:super_dash/gen/assets.gen.dart';
 import 'package:super_dash/l10n/l10n.dart';
 import 'package:super_dash/score/score.dart';
-import 'package:super_dash/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'dart:js' as js;
 
@@ -108,7 +107,6 @@ class _ScoreWidgetState extends State<_ScoreWidget> {
 
   @override
   void initState() {
-    widget.score;
     getTelegramData();
     super.initState();
   }
@@ -210,10 +208,10 @@ class _ScoreWidgetState extends State<_ScoreWidget> {
     // Manuel test için sahte bir veri döndürüyoruz
     return {
       'user': {
-        'id': '123456',
-        'username': 'test_user',
-        'first_name': 'John',
-        'last_name': 'Doe',
+        'id': '',
+        'username': '',
+        'first_name': '',
+        'last_name': '',
       }
     };
   }
