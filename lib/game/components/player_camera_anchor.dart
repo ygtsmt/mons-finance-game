@@ -24,26 +24,9 @@ class CameraBounds extends PositionComponent {
 
     final playerPosition = reference.position.y + referenceOffset.y;
     final difference = playerPosition - position.y;
-    if (difference.abs() > bound) {
-      translateValue = difference;
-    }
 
-    if (translateValue.abs() > 0) {
-      final translationDifference =
-          (translateValue.abs() - translatedValue.abs()) / translateValue.abs();
-      var speed = 1.0 - translationDifference;
-      speed = 1 - speed * speed * speed * speed;
-
-      final step = (800 * speed) * dt * translateValue.sign;
-
-      position.y += step;
-      translatedValue += step.abs();
-
-      if (translateValue.abs() - translatedValue.abs() < 10) {
-        translateValue = 0;
-        translatedValue = 0;
-      }
-    }
+    const followSpeed = 9.0;
+    position.y += difference * followSpeed * dt;
   }
 
   @override
