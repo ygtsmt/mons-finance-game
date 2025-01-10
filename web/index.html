@@ -28,8 +28,8 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Share image -->
-  <meta property="og:image" content="https://storage.googleapis.com/super-dash-game.appspot.com/share.png">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="intro_background_desktop_web.png">
+
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -42,9 +42,38 @@
     rel="stylesheet"
   />
 
-  <title>Super Dash - A Platformer Demo Built in Flutter</title>
+  <title>Mons Finance Game</title>
   <link rel="manifest" href="manifest.json">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+  <script>
+   function initTelegramWebApp() {
+     if (window.Telegram) {
+       window.Telegram.WebApp.disableVerticalSwipes()
+
+       Telegram.WebApp.ready();
+       return Telegram.WebApp.initDataUnsafe;
+     }
+     return null;
+   }
+
+   function sendTelegramData(data) {
+     if (window.Telegram) {
+       Telegram.WebApp.sendData(data);
+     }
+   }
+
+   function setMainButton(text, isVisible) {
+     if (window.Telegram) {
+       Telegram.WebApp.MainButton.setText(text);
+       if (isVisible) {
+         Telegram.WebApp.MainButton.show();
+       } else {
+         Telegram.WebApp.MainButton.hide();
+       }
+     }
+   }
+ </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67589403-11"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -65,9 +94,9 @@
       justify-content: center;
       flex-direction: column;
       overflow: hidden;
-      margin: 0;
+      margin: 50;
       background-color: #346EEB;
-      background: url("background.svg") no-repeat center center fixed;
+      background: url("intro_background_desktop_web.png") no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -89,7 +118,7 @@
       position: absolute;
       bottom: 180px;
       padding: 3px;
-      width: 400px;
+      width: 330px;
       background: rgba(255, 255, 255, 0.24);
       border-radius: 100px;
     }
@@ -175,46 +204,33 @@
   </style>
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
+    var serviceWorkerVersion = '{{flutter_service_worker_version}}';
   </script>
+   
 </head>
 
 <body class="loading-mode">
-  <object id="splash-logo" type="text/html" data="logo.html"></object>
+  <div style="width: auto; height: auto; margin: 0 auto; display: flex; justify-content: center; padding-bottom: 250px;align-items: center;">
+    <img src="game_logo.png" alt="Game Logo" style="width: 100%; height: auto;">
+  </div>
+  
   <p id="splash-copy">
     Loading...
   </p>
   <div id="progress-bar">
     <div id="progress-indicator"></div>
   </div>
-  <div id="cookie-bar">
-    <p>
-      This site uses cookies from Google to deliver and enhance the quality of
-      its services and to analyze traffic. <link><a href="https://policies.google.com/technologies/cookies">Learn More.</a></link>
-    </p>
-    <div id="cookie-bar-button-border"><button id="confirm-cookies">Ok, got it</button></div>
-  </div>
+  
   <script>
     (function () {
-      const cookieBar = document.querySelector("#cookie-bar");
-      const cookieBarButton = document.querySelector("#confirm-cookies");
       const progressBar = document.querySelector("#progress-bar");
       const progressIndicator = document.querySelector("#progress-indicator");
       const splashCopy = document.querySelector("#splash-copy");
       const splashLogo = document.querySelector("#splash-logo");
-
+  
       const additionalScripts = [];
-
-      let cookiesAcceptanceCompleter;
-      let hasUserAcceptedCookies = new Promise((resolve) => {
-        cookiesAcceptanceCompleter = resolve;
-      });
-
-      cookieBarButton.addEventListener("click", function () {
-          cookieBar.remove();
-          cookiesAcceptanceCompleter();
-      });
-
+      const cookiesAcceptanceCompleter = () => {}; // Kullanıcı müdahalesi gerekmez.
+  
       function injectScript(url) {
         return new Promise(function (resolve) {
           let scriptTag = document.createElement("script");
@@ -223,63 +239,46 @@
           scriptTag.onload = function () {
             resolve();
           };
-
           document.body.append(scriptTag);
         });
       }
-
+  
       function beginPreloading(manifestAssets) {
         var assets = [
           "flutter.js",
           "main.dart.js",
-
           ...additionalScripts,
           ...manifestAssets,
         ];
         let totalAssets = assets.length + 1;
         let loaded = 0;
-
-        const batchSize = 20;
-
+  
         async function reportProgress() {
           loaded++;
           const value = Math.floor((loaded / totalAssets) * 100) + "%";
           progressIndicator.style.width = value;
-
+  
           if (assets.length == 0) {
             dispatchAppLoad();
           } else {
             load(assets.shift());
           }
         }
-
+  
         function load(url) {
           const req = new XMLHttpRequest();
           req.onload = reportProgress;
           req.open("get", url);
           req.send();
         }
-
-        function startBatch() {
-          const end = Math.min(batchSize, assets.length);
-          for (let i = 0; i < end; i++) {
-            load(assets.shift());
-          }
-        }
-
-        var scriptLoaded = false;
+  
         async function dispatchAppLoad() {
-          if (scriptLoaded) {
-            return;
-          }
-          scriptLoaded = true;
-
           for (let i = 0; i < additionalScripts.length; i++) {
             await injectScript(additionalScripts[i]);
           }
-
+  
           await injectScript("flutter.js");
-
+  
           // Download main.dart.js
           _flutter.loader.loadEntrypoint({
             serviceWorker: {
@@ -289,37 +288,34 @@
               engineInitializer
                 .initializeEngine()
                 .then(async function (appRunner) {
-                  await hasUserAcceptedCookies;
-                  window.addEventListener(
-                    "flutter-first-frame",
-                    function () {
-                      progressBar.remove();
-                      splashLogo.remove();
-                      splashCopy.remove();
-                      document.body.classList.remove("loading-mode");
-                    }
-                  );
-
+                  
+                  window.addEventListener("flutter-first-frame", function () {
+                    progressBar.remove();
+         /*            splashLogo.remove(); */
+                    splashCopy.remove();
+                    document.body.classList.remove("loading-mode");
+                  });
                   appRunner.runApp();
-              });
+                });
             },
           });
         }
-
-        startBatch();
+  
+        load(assets.shift());
       }
-
+  
       window.addEventListener("load", async function (ev) {
         const response = await fetch("assets/AssetManifest.json");
         const manifest = await response.json();
         const assets = Object.values(manifest)
           .map((list) => list.map((url) => "assets/" + url))
           .reduce((arr, curr) => [...arr, ...curr]);
-
+  
         beginPreloading(assets);
       });
     })();
   </script>
+  
 </body>
 
 </html>
