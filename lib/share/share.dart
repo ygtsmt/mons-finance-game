@@ -10,8 +10,8 @@ class ShareController {
   String _postContent(int score) {
     final formatter = NumberFormat('#,###');
     final scoreFormatted = formatter.format(score);
-
-    return 'I scored $scoreFormatted onss MonsFinanceGame. Can you beat my score?';
+    return 'I scored $scoreFormatted ons MonsFinanceGame. '
+        'Can you beat my score?';
   }
 
   String _twitterUrl(String content) {
