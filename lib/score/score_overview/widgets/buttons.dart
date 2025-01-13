@@ -11,8 +11,8 @@ const _gradient = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
   colors: [
-    Color(0x60D0F7FB),
-    Color(0x6005B5CB),
+    Color(0xFFA6C3DF),
+    Color(0xFF79AACA),
   ],
 );
 
@@ -114,7 +114,19 @@ class _ShareButton extends StatelessWidget {
 
 class _PlayAgainButton extends StatelessWidget {
   const _PlayAgainButton();
-
+/*   GameElevatedButton.icon(
+                label: l10n.playAgain,
+                icon: const Icon(Icons.refresh, size: 32),
+                onPressed: context.flow<ScoreState>().complete,
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFA6C3DF),
+                    Color(0xFF79AACA),
+                  ],
+                ),
+              ), */
   @override
   Widget build(BuildContext context) {
     return GameElevatedButton.icon(

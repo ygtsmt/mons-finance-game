@@ -62,29 +62,9 @@ class GameOverPage extends StatelessWidget {
               ),
               const Spacer(flex: 2),
               _ScoreWidget(score),
-              const Spacer(flex: 6),
+              const Spacer(flex: 10),
               if (kIsWeb) const WebButtons() else const MobileButtons(),
-              /*  GameElevatedButton(
-                label: l10n.submitScore,
-                onPressed: () {
-                  context.read<ScoreBloc>().add(const ScoreSubmitted());
-                },
-              ), */
-              const Spacer(flex: 3),
-              GameElevatedButton.icon(
-                label: l10n.playAgain,
-                icon: const Icon(Icons.refresh, size: 32),
-                onPressed: context.flow<ScoreState>().complete,
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFA6C3DF),
-                    Color(0xFF79AACA),
-                  ],
-                ),
-              ),
-              const Spacer(flex: 40),
+              const Spacer(flex: 30),
               const BottomBar(),
               const SizedBox(height: 16),
             ],
