@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app_ui/app_ui.dart';
 import 'package:flow_builder/flow_builder.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -61,8 +62,8 @@ class GameOverPage extends StatelessWidget {
               ),
               const Spacer(flex: 2),
               _ScoreWidget(score),
-              const Spacer(flex: 4),
-              const SeeTheRankingButton(),
+              const Spacer(flex: 6),
+              if (kIsWeb) const WebButtons() else const MobileButtons(),
               /*  GameElevatedButton(
                 label: l10n.submitScore,
                 onPressed: () {
