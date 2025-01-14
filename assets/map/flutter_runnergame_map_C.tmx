@@ -594,7 +594,7 @@
   <object id="750" type="Respawn" x="4672" y="1152">
    <point/>
   </object>
-  <object id="751" type="Respawn" x="5792" y="704">
+  <object id="751" type="Respawn" x="5792" y="585.333">
    <point/>
   </object>
   <object id="752" type="Respawn" x="6656" y="1024">
@@ -618,7 +618,7 @@
   <object id="768" type="Respawn" x="4352" y="704">
    <point/>
   </object>
-  <object id="769" type="Respawn" x="5408" y="512">
+  <object id="769" type="Respawn" x="5405.33" y="441.333">
    <point/>
   </object>
   <object id="890" type="Respawn" x="1533.33" y="1928">
