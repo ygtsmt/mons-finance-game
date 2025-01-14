@@ -143,14 +143,14 @@ class PlayerStateBehavior extends Behavior<Player> {
           'anim/auto_run_instruction_death.png',
           SpriteAnimationData.sequenced(
             amount: 24,
-            stepTime: 999999,
+            stepTime: 0.042,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             amountPerRow: 8,
             loop: false,
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/auto_run_instruction.png',
+          'anim/auto_run_instruction_death.png',
           SpriteAnimationData.sequenced(
             amount: 24,
             stepTime: 999999,
@@ -163,16 +163,16 @@ class PlayerStateBehavior extends Behavior<Player> {
           'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 999999,
+            stepTime: 99999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             loop: false,
           ),
         ),
         parent.gameRef.loadSpriteAnimation(
-          'anim/auto_run_instruction.png',
+          'anim/auto_run_instruction_death.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 999999,
+            stepTime: 99999,
             textureSize: Vector2(
               parent.gameRef.tileSize,
               parent.gameRef.tileSize * 2,
@@ -185,7 +185,7 @@ class PlayerStateBehavior extends Behavior<Player> {
           'anim/auto_run_instruction.png',
           SpriteAnimationData.sequenced(
             amount: 16,
-            stepTime: 999999,
+            stepTime: 99999,
             textureSize: Vector2.all(parent.gameRef.tileSize),
             loop: false,
           ),
