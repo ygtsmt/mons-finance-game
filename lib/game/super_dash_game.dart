@@ -121,8 +121,8 @@ class SuperDashGame extends LeapGame
     }
 
     camera = CameraComponent.withFixedResolution(
-      width: _cameraViewport.x,
-      height: _cameraViewport.y + 200,
+      width: _cameraViewport.x + 300,
+      height: _cameraViewport.y - 100,
     )..world = world;
 
     images = Images(
