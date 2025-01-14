@@ -623,7 +623,7 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="spawn">
-  <object id="163" name="Spawn" type="PlayerSpawn" x="804" y="1556">
+  <object id="163" name="Spawn" type="PlayerSpawn" x="448" y="1960">
    <point/>
   </object>
  </objectgroup>

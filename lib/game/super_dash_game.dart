@@ -325,13 +325,13 @@ class SuperDashGame extends LeapGame
     _setSectionBackground();
   }
 
-  void sectionCleared() {
+  void sectionCleared() async {
     if (isLastSection) {
       player?.spritePaintColor(Colors.transparent);
       player?.walking = false;
     }
 
-    _loadNewSection();
+    await _loadNewSection();
 
     gameBloc
       ..add(GameScoreIncreased(by: 1000 * state.currentLevel))
