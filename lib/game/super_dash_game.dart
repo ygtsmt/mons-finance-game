@@ -47,7 +47,7 @@ class SuperDashGame extends LeapGame
           ),
         );
 
-  static final _cameraViewport = Vector2(800, 1024);
+  static final _cameraViewport = Vector2(594, 1024);
   static const prefix = 'assets/map/';
   static const _sections = [
     'flutter_runnergame_map_A.tmx',
@@ -55,9 +55,9 @@ class SuperDashGame extends LeapGame
     'flutter_runnergame_map_C.tmx',
   ];
   static const _sectionsBackgroundColor = [
-    (Color(0xFFDADEF6), Color(0xFFEAF0E3)),
+    (Color(0xFFDADEF6), Color(0xFF0055B4)),
     (Color(0xFFEBD6E1), Color(0xFFC9C8E9)),
-    (Color(0xFF002052), Color(0xFF0055B4)),
+    (Color(0xFF002052), Color(0xFFEAF0E3)),
   ];
 
   final GameBloc gameBloc;

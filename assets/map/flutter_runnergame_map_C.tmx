@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="160" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="60" nextobjectid="891">
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="160" height="40" tilewidth="64" tileheight="64" infinite="0" nextlayerid="60" nextobjectid="892">
  <tileset firstgid="1" source="tiles/tile_clouds_v02.tsx"/>
  <tileset firstgid="73" source="objects/tile_enemies_v2.tsx"/>
  <tileset firstgid="79" source="objects/tile_items_v2.tsx"/>
@@ -486,7 +486,7 @@
   <object id="886" gid="80" x="1312" y="2048" width="64" height="64"/>
  </objectgroup>
  <objectgroup id="9" name="enemies">
-  <object id="720" gid="78" x="3136" y="960" width="64" height="64">
+  <object id="720" gid="78" x="3817.82" y="541.818" width="64" height="64">
    <properties>
     <property name="Fly" type="bool" value="true"/>
     <property name="Path" value="I{1T, 1B}"/>
@@ -533,7 +533,7 @@
     <property name="Type" value="Ant"/>
    </properties>
   </object>
-  <object id="875" gid="908" x="2880" y="1088" width="64" height="64">
+  <object id="875" gid="908" x="2898.18" y="1091.03" width="64" height="64">
    <properties>
     <property name="Path" value="I{1L, 1R}"/>
     <property name="Type" value="Ant"/>
@@ -577,7 +577,7 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="spawn">
-  <object id="841" name="Spawn" type="PlayerSpawn" x="320" y="2240">
+  <object id="841" name="Spawn" type="PlayerSpawn" x="165.455" y="2209.7">
    <point/>
   </object>
  </objectgroup>
@@ -585,10 +585,10 @@
   <object id="745" type="Respawn" x="2101.82" y="2051.76">
    <point/>
   </object>
-  <object id="747" type="Respawn" x="2176" y="1408">
+  <object id="747" type="Respawn" x="2151.76" y="1435.27">
    <point/>
   </object>
-  <object id="748" type="Respawn" x="2880" y="1728">
+  <object id="748" type="Respawn" x="2452.73" y="1876.48">
    <point/>
   </object>
   <object id="750" type="Respawn" x="4672" y="1152">
@@ -606,7 +606,7 @@
   <object id="754" type="Respawn" x="8256" y="1664">
    <point/>
   </object>
-  <object id="761" type="Respawn" x="2560" y="1088">
+  <object id="761" type="Respawn" x="2341.82" y="645.576">
    <point/>
   </object>
   <object id="762" type="Respawn" x="3520" y="896">
