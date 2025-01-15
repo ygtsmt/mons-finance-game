@@ -47,7 +47,7 @@ class SuperDashGame extends LeapGame
           ),
         );
 
-  static final _cameraViewport = Vector2(592, 1024);
+  static final _cameraViewport = Vector2(800, 1024);
   static const prefix = 'assets/map/';
   static const _sections = [
     'flutter_runnergame_map_A.tmx',
