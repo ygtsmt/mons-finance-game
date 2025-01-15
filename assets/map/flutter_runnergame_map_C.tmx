@@ -569,7 +569,7 @@
     <property name="Type" value="Ant"/>
    </properties>
   </object>
-  <object id="882" gid="908" x="7104" y="1152" width="64" height="64">
+  <object id="882" gid="908" x="7213.09" y="1148.97" width="64" height="64">
    <properties>
     <property name="Path" value="I{2L, 2R}"/>
     <property name="Type" value="Ant"/>
@@ -597,7 +597,7 @@
   <object id="751" type="Respawn" x="5792" y="585.333">
    <point/>
   </object>
-  <object id="752" type="Respawn" x="6656" y="1024">
+  <object id="752" type="Respawn" x="6652.97" y="978.545">
    <point/>
   </object>
   <object id="753" type="Respawn" x="7360" y="1152">
